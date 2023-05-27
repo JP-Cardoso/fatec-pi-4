@@ -5,12 +5,11 @@ class Coffee extends Model {
         super.init({
             type: Sequelize.STRING,
             bags: Sequelize.STRING,
-            weigth: Sequelize.STRING,
-           
+            weight: Sequelize.STRING,
         }, {
             sequelize,
             tableName: 'coffee'
-           
+
         })
     }
 
