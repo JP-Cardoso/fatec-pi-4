@@ -4,4 +4,20 @@ const create = async (item) => {
     return CoffeeRepository.create(item);
 };
 
-module.exports = { create }
+const findAll = async () => {
+    return CoffeeRepository.findAll();
+};
+
+const getById = async (id) => {
+    return CoffeeRepository.getById(id);
+};
+
+const updated = async (item) => {
+    return CoffeeRepository.updated(item);
+};
+
+const remove = async (id) => {
+    return CoffeeRepository.remove(id);
+};
+
+module.exports = { create, findAll, getById, updated, remove };

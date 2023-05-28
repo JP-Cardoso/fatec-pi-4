@@ -13,9 +13,9 @@ const create = async (request, h) => {
         };
 
         const result = toPayload(await ClientBusiness.create(client));
+
         return h.response(result).code(201);
     } catch (error) {
-        console.log(error);
         return h.response(error.message).code(500);
     }
 };
@@ -23,23 +23,26 @@ const create = async (request, h) => {
 const find = async (request, h) => {
     try {
 
-        const result = await ClientBusiness.findAll();
-        console.log('Controller', result);
-        return h.response(result);
+        const options = { pagins: request.query }
+        const result = await ClientBusiness.findAll(options);
+
+        return h.response(result).code(200);
     } catch (error) {
-        console.log(error);
+
         return h.response(error.message).code(500);
     }
 };
 
 const getById = async (request, h) => {
     try {
+
         const id = request.params.id;
         const result = await ClientBusiness.getById(id);
-        console.log('getById', result);
-        return h.response(result)
+
+        return h.response(result).code(200);
     } catch (error) {
-        console.error(error);
+
+        return h.response(error.message).code(500);
     };
 };
 
@@ -47,12 +50,12 @@ const updated = async (request, h) => {
     try {
         const id = request.params.id
         const client = request.payload;
-        const obj = {id, ...client}
-        const result = await ClientBusiness.updated(obj)
-        console.log('result', result);
-        return h.response(result)
+        const obj = { id, ...client };
+        const result = await ClientBusiness.updated(obj);
+
+        return h.response(result).code(200);
     } catch (error) {
-        console.error(error);
+        return h.response(error.message).code(500);
     }
 };
 
@@ -60,9 +63,9 @@ const remove = async (request, h) => {
     try {
         const id = request.params.id;
         const result = await ClientBusiness.remove(id);
-        return h.response(result);
+        return h.response(result).code(200);
     } catch (error) {
-        console.error(error);
+        console.error(error).code(500);
     }
 };
 

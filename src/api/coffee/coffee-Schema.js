@@ -11,4 +11,20 @@ const postCoffee = {
     })
 };
 
-module.exports = {postCoffee};
+
+const getById = {
+    params: Joi.object({
+        id: Joi
+            .number().integer().required()
+    })
+};
+
+const updated = {
+    params: Joi.object({
+        id: Joi
+            .number().integer().required()
+    }),
+};
+
+
+module.exports = { postCoffee, getById, updated };

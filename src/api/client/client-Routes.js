@@ -1,4 +1,4 @@
-const {create, find, getById, updated, remove} = require('./client-Controller');
+const { create, find, getById, updated, remove } = require('./client-Controller');
 const schema = require('./client-Schema');
 
 const plugin = {
@@ -17,13 +17,16 @@ const plugin = {
             {
                 method: "GET",
                 path: "/clients",
-                handler: find
+                options: {
+                    validate: schema.findAll,
+                    handler: find
+                }
             },
             {
                 method: "GET",
                 path: "/client/{id}",
                 options: {
-                    validate: schema.getClient,
+                    validate: schema.getById,
                     handler: getById
                 }
             },
@@ -31,17 +34,14 @@ const plugin = {
                 method: "PUT",
                 path: "/client/{id}",
                 options: {
-                    // validate: schema.getClient,
+                    validate: schema.updated,
                     handler: updated
                 }
             },
             {
                 method: "DELETE",
                 path: "/client/{id}",
-                options: {
-                    // validate: schema.getClient,
-                    handler: remove
-                }
+                handler: remove
             },
         ]);
     })

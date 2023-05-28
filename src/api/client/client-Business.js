@@ -5,8 +5,8 @@ const create = async (client) => {
     return ClientRepository.save(client);
 };
 
-const findAll = async () => {
-    return ClientRepository.findAll();
+const findAll = async (options) => {
+    return ClientRepository.findAll(options);
 };
 
 const getById = async (id) => {
@@ -14,11 +14,11 @@ const getById = async (id) => {
 };
 
 const updated = async (item) => {
-  
+
     return ClientRepository.updated(item)
 };
 
-const remove = async(id) => {
+const remove = async (id) => {
     return ClientRepository.remove(id)
 };
 

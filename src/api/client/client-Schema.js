@@ -13,12 +13,28 @@ const postClient = {
     })
 };
 
-const getClient = {
-    params: Joi.object({
-        id: Joi
-            .number()
-            .integer()
-            .required()
+const findAll = {
+    query: Joi.object({
+        offset: Joi
+            .number().integer().min(0)
+            .default(0),
+        limit: Joi
+            .number().integer().min(1).max(5).default(5),
     })
 }
-module.exports = { postClient, getClient };
+
+const getById = {
+    params: Joi.object({
+        id: Joi
+            .number().integer().required()
+    })
+};
+
+const updated = {
+    query: Joi.object({
+        id: Joi
+            .number().integer().required()
+    }),
+}
+
+module.exports = { postClient, getById, updated, findAll };

@@ -5,8 +5,13 @@ const save = async (client) => {
     return result;
 };
 
-const findAll = async () => {
-    const result = await ClientModel.findAll({ raw: true });
+const findAll = async (options) => {
+    const { offset, limit } = options.pagins;
+    const result = ClientModel.findAll({
+        raw: true,
+        limit,
+        offset,
+    });//offset: 5 passa o proximo valor
     return result;
 };
 
@@ -16,16 +21,16 @@ const getById = async (id) => {
 };
 
 const updated = async (item) => {
-    console.log('repo',item);
-    const {id, name, cnpj, phone, email} = {...item}
+    console.log('repo', item);
+    const { id, name, cnpj, phone, email } = { ...item }
 
     const result = await ClientModel.update(
-        { name, cnpj,phone, email },  {
+        { name, cnpj, phone, email }, {
         where: {
             id
         }
-    },{ raw: true });
-    console.log('Resultado',result);
+    }, { raw: true });
+    console.log('Resultado', result);
     return result
 };
 
@@ -35,7 +40,7 @@ const remove = async (id) => {
         where: {
             id
         }
-    }, {raw: true});
+    }, { raw: true });
     console.log('Destroy', result);
 };
 

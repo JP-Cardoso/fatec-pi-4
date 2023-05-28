@@ -8,12 +8,65 @@ const create = async (request, h) => {
             bags: payload.bags,
             weight: payload.weight,
         };
+
         const result = await CoffeeBusiness.create(item);
-        console.log(result);
+
         return h.response(result).code(201);
     } catch (error) {
-        console.error(error);
+        return h.response(error.message).code(500);
     }
 };
 
-module.exports = { create }
+const findAll = async (request, h) => {
+    try {
+
+        const result = await CoffeeBusiness.findAll();
+
+        return h.response(result).code(200);
+    } catch (error) {
+        return h.response(error.message).code(500);
+    }
+};
+
+const getById = async (request, h) => {
+    try {
+
+        const id = request.params.id;
+        const result = await CoffeeBusiness.getById(id);
+
+        return h.response(result).code(200);
+    } catch (error) {
+
+        return h.response(error.message).code(500);
+    };
+};
+
+const updated = async (request, h) => {
+    try {
+        const id = request.params.id
+        const client = request.payload;
+        const obj = { id, ...client };
+
+        const result = await CoffeeBusiness.updated(obj);
+
+        return h.response(result).code(200);
+    } catch (error) {
+
+        return h.response(error.message).code(500);
+    }
+};
+
+const remove = async (request, h) => {
+    try {
+
+        const id = request.params.id;
+        const result = await CoffeeBusiness.remove(id);
+
+        return h.response(result).code(200);
+    } catch (error) {
+
+        return h.response(error.message).code(500);
+    }
+};
+
+module.exports = { create, findAll, getById, updated, remove }
