@@ -6,11 +6,11 @@ const diac = process.env.DB_DIAC;
 
 module.exports = {
     logging: console.log,
-    dialect: diac, 
+    dialect, 
     host,
-    username: user,
-    password: pass, 
-    database: name, 
+    username,
+    password, 
+    database, 
     define: {
         timestamps: true,
         underscored: true,

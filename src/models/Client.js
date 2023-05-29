@@ -10,10 +10,13 @@ class Client extends Model {
         }, {
             sequelize,
             tableName: 'client'
-           
-        })
-    }
 
+        })
+    };
+
+    static associate(models) {
+        this.hasMany(models.Address, { foreignKey: 'user_id', as: 'addresses' });
+    };
 
 };
 
